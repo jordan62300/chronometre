@@ -1,10 +1,16 @@
 var temps = "";
+var alltimes = []
 var go = 0;
 var sec = 0;
 var min = 0;
 var hr = 0;
 var afficher = document.getElementById("afficher");
 var joueur = [];
+var joueurs = [];
+var data = {
+    player : joueurs,
+    timer : alltimes,
+}
 
 document.getElementById("btn").addEventListener("click",goStop);
 document.getElementById("reset").addEventListener("click",reset);
@@ -57,7 +63,9 @@ function reset() {
 function save() {
     
     joueur = document.getElementById("nom").value;
-    localStorage.setItem("username", joueur);
-    localStorage.setItem("temps",temps);
-    alert( "username = " + localStorage.getItem("username") + " Temps : " + localStorage.getItem("temps") );
+    joueurs.push(joueur);
+    alltimes.push(temps);
+    localStorage.setItem("username", JSON.stringify(data.player));
+    localStorage.setItem("temps",JSON.stringify(data.timer));
+    alert( "username = " + JSON.parse(localStorage.getItem("username"))+ " Temps : " + JSON.parse(localStorage.getItem("temps")) );
 }
