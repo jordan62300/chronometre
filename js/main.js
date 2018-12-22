@@ -12,9 +12,12 @@ var data = {
     timer : alltimes,
 }
 
+var p = document.createElement("p")
+
 document.getElementById("btn").addEventListener("click",goStop);
 document.getElementById("reset").addEventListener("click",reset);
 document.getElementById("save").addEventListener("click",save);
+document.getElementById("classement").addEventListener("click",Classement);
 
 
 function goStop() {
@@ -65,7 +68,20 @@ function save() {
     joueur = document.getElementById("nom").value;
     joueurs.push(joueur);
     alltimes.push(temps);
+    
+}
+
+function Classement() {
     localStorage.setItem("username", JSON.stringify(data.player));
     localStorage.setItem("temps",JSON.stringify(data.timer));
     alert( "username = " + JSON.parse(localStorage.getItem("username"))+ " Temps : " + JSON.parse(localStorage.getItem("temps")) );
-}
+   //document.getElementById("Joueur").appendChild(li).innerHTML =  "username = ";
+
+
+
+
+  document.getElementById("Joueur").appendChild(p).innerHTML += JSON.parse(localStorage.getItem("username")) + " ";
+  document.getElementById("Temps").appendChild(p).innerHTML += JSON.parse(localStorage.getItem("temps")); 
+
+
+};
